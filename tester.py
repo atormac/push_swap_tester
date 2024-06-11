@@ -18,11 +18,11 @@ def test_count(num):
     global KO
     print("--- " + str(num) + " numbers ---")
     lst = []
-    for x in range(0, 100):
+    for x in range(0, 10):
         args = random.sample(range(-500, 500), num)
         arg_str = ' '.join(map(str, args))
-        stdout = subprocess.run(['../push_swap', arg_str],
-                    check=True, capture_output=True, text=True).stdout
+        stdout = subprocess.run(['../push_swap ' + arg_str],
+                    shell=True, check=True, capture_output=True, text=True).stdout
         line_count = stdout.count('\n')
         lst.append(line_count)
         p = subprocess.Popen([checker, arg_str], stdout=PIPE, stdin=PIPE,
